@@ -1,0 +1,413 @@
+/* Custom Styles for Minimalistic Portfolio */
+
+/* Base & Scrollbar */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Scrollbar Customization */
+  :root {
+    --sb-track: #0b1120;
+    --sb-thumb: #334155;
+    --sb-thumb-hover: #475569;
+  }
+
+  .light-mode {
+    --sb-track: #f1f5f9;
+    --sb-thumb: #cbd5e1;
+    --sb-thumb-hover: #94a3b8;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--sb-track);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--sb-thumb);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--sb-thumb-hover);
+  }
+}
+
+/* Glassmorphism Card Effect */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Animations Triggered by Scroll */
+.fade-up-element {
+  will-change: opacity, transform;
+  /* Fallback: visible by default */
+  opacity: 1;
+}
+
+.fade-in-right-element {
+  will-change: opacity, transform;
+}
+
+/* Classes added by JavaScript IntersectionObserver */
+.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in-right-element.is-visible {
+  transform: translateX(0);
+}
+
+/* Perfect Geometric Vector Border */
+.vector-border-perfect {
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.vector-border-perfect::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  padding: 1.5px;
+  /* Razor thin precise line */
+  background: linear-gradient(to top right, #0ea5e9, #38bdf8);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Image Positioning Utility (Adjusts framing for portraits) */
+.object-face-focus {
+  object-position: center 15%;
+  /* Moves focus towards the top where the face/glasses usually are in a portrait */
+}
+
+/* Animation Delays for Staggering */
+.delay-100 {
+  transition-delay: 100ms;
+}
+
+.delay-200 {
+  transition-delay: 200ms;
+}
+
+.delay-300 {
+  transition-delay: 300ms;
+}
+
+/* Blur Background Utility class used for Blob */
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* --- Light Mode Refined Support --- */
+:root {
+  --transition-speed: 0.5s;
+}
+
+.light-mode body {
+  background-color: #f8fafc;
+  /* Slate 50 */
+  color: #1e293b;
+  /* Slate 800 */
+}
+
+.light-mode #navbar {
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px -10px rgba(0, 0, 0, 0.05);
+}
+
+.light-mode #navbar .text-white {
+  color: #0f172a;
+}
+
+.light-mode #navbar a:hover {
+  color: #0ea5e9 !important;
+}
+
+.light-mode .text-slate-300,
+.light-mode .text-slate-400 {
+  color: #475569;
+  /* Slate 600 */
+}
+
+/* Secondary contrast for labels */
+.light-mode .text-slate-500 {
+  color: #64748b;
+  /* Slate 500 */
+}
+
+.light-mode .text-white {
+  color: #0f172a;
+  /* Slate 900 */
+}
+
+.light-mode .bg-dark,
+.light-mode .bg-darker {
+  background-color: #f1f5f9;
+  /* Slate 100 */
+}
+
+/* Ensure all opacity-suffixed background variants match the light theme */
+.light-mode .bg-darker\/30,
+.light-mode .bg-darker\/40,
+.light-mode .bg-darker\/50,
+.light-mode .bg-dark\/30,
+.light-mode .bg-dark\/40,
+.light-mode .bg-dark\/50 {
+  background-color: rgba(241, 245, 249, 0.7) !important;
+}
+
+.light-mode .bg-white\/5 {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.light-mode .border-white\/10,
+.light-mode .border-white\/5 {
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.light-mode .glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.08);
+}
+
+.light-mode .project-card-overlay {
+  background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.7), rgba(241, 245, 249, 0.95)) !important;
+}
+
+.light-mode .project-card-overlay h4 {
+  color: #0f172a !important;
+}
+
+.light-mode .project-card-overlay p {
+  color: #475569 !important;
+}
+
+.light-mode .project-card-overlay .bg-white\/10 {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Specific component overrides */
+.light-mode #theme-toggle,
+.light-mode #theme-toggle-mobile {
+  color: #0f172a;
+  border-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.light-mode .contact-form-container {
+  background-color: white;
+}
+
+.light-mode input,
+.light-mode textarea {
+  background-color: white;
+  border-color: #e2e8f0;
+  color: #1e293b;
+}
+
+.light-mode input::placeholder,
+.light-mode textarea::placeholder {
+  color: #94a3b8;
+}
+
+/* Hover Adjustments for Light Mode */
+.light-mode .hover\:bg-white\/10:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Blob adjustments for light mode clarity */
+.light-mode .animate-blob {
+  opacity: 0.2;
+  filter: blur(80px);
+}
+
+/* Loader Light Mode */
+.light-mode #loader {
+  background-color: #f8fafc;
+}
+
+/* Scroll-to-top light mode */
+.light-mode #scroll-top-btn {
+  background-color: #0ea5e9;
+  color: white;
+}
+
+.light-mode #scroll-top-btn:hover {
+  background-color: #0f172a;
+}
+
+/* GitHub Stats Light Overrides */
+.light-mode #stats-grid > div {
+  background-color: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+/* Services Layout Overrides */
+.light-mode #services .flex-col.h-full {
+  background-color: #ffffff;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+.light-mode #services i {
+  filter: saturate(1.5) contrast(1.2);
+}
+
+/* Testimonials Quotes */
+.light-mode blockquote p,
+.light-mode .text-slate-400.italic {
+  color: #334155 !important;
+  /* Slate 700 */
+}
+
+.light-mode #testimonials h5 {
+  color: #0f172a !important;
+}
+
+.light-mode #testimonials .text-brand-light\/20,
+.light-mode #testimonials .text-fuchsia-500\/20,
+.light-mode #testimonials .text-emerald-400\/20 {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+.light-mode #blog article h4 {
+  color: #0f172a !important;
+}
+
+.light-mode #blog .bg-darker\/60 {
+  background-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.light-mode #blog .text-white {
+  color: #1e293b !important;
+}
+
+/* --- Global Button Refinements --- */
+button,
+.btn,
+a[class*="px-"][class*="py-"],
+input[type="submit"],
+#scroll-top-btn {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Primary Brand Buttons (Sky Blue) */
+.bg-brand-light {
+  border-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+.light-mode .bg-brand-light {
+  background-color: #0ea5e9 !important;
+  color: #ffffff !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 4px 12px -2px rgba(14, 165, 233, 0.3);
+}
+
+.light-mode .bg-brand-light:hover {
+  background-color: #0284c7 !important;
+  box-shadow: 0 8px 20px -4px rgba(14, 165, 233, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Secondary Buttons (Glass/Ghost) */
+.light-mode .bg-white\/5,
+.light-mode .bg-white\/10 {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #1e293b !important;
+}
+
+.light-mode .bg-white\/5:hover,
+.light-mode .bg-white\/10:hover {
+  background-color: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Connect Me Section Light Polish */
+.light-mode #contact .text-slate-300,
+.light-mode #contact .text-slate-500 {
+  color: #475569 !important;
+}
+
+.light-mode #contact a.group div.w-10 {
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+}
+
+.light-mode #contact a.group i {
+  color: #1e293b !important;
+}
+
+.light-mode #contact a.group:hover i {
+  color: #0ea5e9 !important;
+}
+
+/* Contact Form Overrides */
+.light-mode #contact label {
+  color: #1e293b !important;
+}
+
+.light-mode #contact input,
+.light-mode #contact textarea {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Project Specific Buttons (Fuchsia/Others) */
+.light-mode .bg-fuchsia-500 {
+  background-color: #d946ef !important;
+  color: #ffffff !important;
+  border-color: #c026d3 !important;
+  box-shadow: 0 4px 12px -2px rgba(217, 70, 239, 0.3);
+}
+
+/* Mobile Link Fixes */
+.light-mode .mobile-link {
+  color: #1e293b;
+}
+
+/* Hire Me Button Specifics in Navbar */
+.light-mode #navbar a[href="#contact"].bg-white\/5 {
+  border-color: #0ea5e9 !important;
+  color: #0ea5e9 !important;
+  font-weight: 600;
+  background-color: transparent !important;
+}
+
+.light-mode #navbar a[href="#contact"].bg-white\/5:hover {
+  background-color: #0ea5e9 !important;
+  color: #ffffff !important;
+}
+
+/* Specific button in Hero (Work View) */
+.light-mode a[href="#projects"].bg-white\/10 {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #475569 !important;
+}
