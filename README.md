@@ -3,7 +3,7 @@
 A modern, high-performance portfolio website built with a focus on motion, aesthetics, and usability. Features a dynamic Admin Portal for code-free content management.
 
 ## 🚀 Live Demo
-**[Launch Portfolio]([https://amritsugandh.github.io/portfolio/](https://portfolio-eight-tau-7d7gh5syd4.vercel.app/))** 
+**[Launch Portfolio](https://portfolio-eight-tau-7d7gh5syd4.vercel.app/)** 
 
 ## ✨ Key Features
 - **Dynamic Content**: Powered by Firebase Firestore.
