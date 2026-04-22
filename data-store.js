@@ -18,7 +18,7 @@ const portfolioData = {
             category: "AI / Gemini",
             tags: ["AI", "Gemini"],
             description: "A production-grade AI platform for personalized event planning, featuring multi-session chat and persistent itineraries.",
-            image: "./p1.png",
+            image: "src/assets/p1.png",
             liveUrl: "https://personal-event-ai-concierge.vercel.app",
             githubUrl: "https://github.com/amritsugandh/Personal-Event-AI-Concierge"
         },
@@ -28,7 +28,7 @@ const portfolioData = {
             category: "Full-Stack",
             tags: ["Full-Stack", "SQL"],
             description: "A comprehensive booking system with a modern glassmorphism admin dashboard and secure user authentication.",
-            image: "./p2.png",
+            image: "src/assets/p2.png",
             githubUrl: "https://github.com/amritsugandh/booking-bus-ticket"
         },
         {
@@ -37,7 +37,7 @@ const portfolioData = {
             category: "Frontend",
             tags: ["Frontend", "Scalable"],
             description: "A professional educational platform featuring user authentication and a streamlined course management interface.",
-            image: "educational_mockup.png",
+            image: "src/assets/educational_mockup.png",
             liveUrl: "https://amritsugandh.github.io/educational-website/",
             githubUrl: "https://github.com/amritsugandh/educational-website"
         }

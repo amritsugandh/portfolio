@@ -3,6 +3,13 @@
 
 const db = (typeof firebase !== 'undefined') ? firebase.firestore() : null;
 
+// Helper to fix image paths coming from old database entries or local root
+const fixImagePath = (path) => {
+    if (!path || path.startsWith('http') || path.includes('src/assets/')) return path;
+    const cleanPath = path.startsWith('./') ? path.substring(2) : path;
+    return `src/assets/${cleanPath}`;
+};
+
 const renderPortfolio = async () => {
     let data = (typeof portfolioData !== 'undefined') ? portfolioData : null;
 
@@ -82,7 +89,7 @@ const renderPortfolio = async () => {
                 class="group flex flex-col bg-white/5 border border-white/10 rounded-3xl overflow-hidden hover:border-brand-light/40 transition-all duration-500 fade-up-element h-full"
                 style="transition-delay: ${index * 100}ms;">
                 <div class="h-48 overflow-hidden relative">
-                    <img src="${project.image}" alt="${project.title}"
+                    <img src="${fixImagePath(project.image)}" alt="${project.title}"
                         class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700">
                     <div class="absolute inset-0 bg-dark/20 group-hover:bg-transparent transition-colors"></div>
                 </div>
