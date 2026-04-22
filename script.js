@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cursorSpan = document.getElementById("cursor");
 
     if (typedTextSpan && cursorSpan) {
-        const textArray = ["Python Developer", "Web Developer", "Vibe Coder", "Frontend Developer"];
+        const textArray = ["Software Engineer", "Full-Stack Developer", "Python Developer", "React Enthusiast", "Gen AI Enthusiast", "Frontend Developer", "AI & ML Enthusiast"];
         const typingDelay = 100;
         const erasingDelay = 50;
         const newTextDelay = 2000; // Delay between current and next text
@@ -272,10 +272,96 @@ document.addEventListener('DOMContentLoaded', () => {
             if (user) {
                 if (adminLink) adminLink.classList.remove('hidden');
                 if (adminLinkMobile) adminLinkMobile.classList.remove('hidden');
-            } else {
-                if (adminLink) adminLink.classList.add('hidden');
-                if (adminLinkMobile) adminLinkMobile.classList.add('hidden');
             }
         });
     }
+
+    // --- In-Page Legal Modals ---
+    const modalOverlay = document.getElementById('legal-modal-overlay');
+    const modalTitle = document.getElementById('modal-title');
+    const modalContent = document.getElementById('modal-content');
+    const closeModalBtn = document.getElementById('close-legal-modal');
+    const openTermsBtn = document.getElementById('open-terms');
+    const openPrivacyBtn = document.getElementById('open-privacy');
+
+    const legalContent = {
+        terms: {
+            title: "Terms of Service",
+            content: `
+                <h2 class="text-2xl font-bold text-white mb-4">1. Acceptance of Terms</h2>
+                <p>By accessing and using this portfolio website, you agree to be bound by these Terms of Service and all applicable laws and regulations.</p>
+                <h2 class="text-2xl font-bold text-white mb-4">2. Intellectual Property</h2>
+                <p>All content included on this site, such as text, graphics, logos, images, and code, is the property of Amrit Sugandh and protected by international copyright laws.</p>
+                <h2 class="text-2xl font-bold text-white mb-4">3. Use License</h2>
+                <p>Permission is granted to temporarily view the materials on this website for personal, non-commercial transitory viewing only.</p>
+                <h2 class="text-2xl font-bold text-white mb-4">4. Disclaimer</h2>
+                <p>The materials on Amrit Sugandh's website are provided on an 'as is' basis. Amrit Sugandh makes no warranties, expressed or implied.</p>
+                <h2 class="text-2xl font-bold text-white mb-4">5. Project Outcomes</h2>
+                <p>While the projects showcased reflect actual development work, they are provided as portfolio demonstrations.</p>
+            `
+        },
+        privacy: {
+            title: "Privacy Policy",
+            content: `
+                <h2 class="text-2xl font-bold text-white mb-4">1. Information Collection</h2>
+                <p>We only collect information that you voluntarily provide through the contact form. This may include your name and email address.</p>
+                <h2 class="text-2xl font-bold text-white mb-4">2. Use of Information</h2>
+                <p>Your information is used solely to respond to your inquiries. We do not sell or trade your personally identifiable information.</p>
+                <h2 class="text-2xl font-bold text-white mb-4">3. Data Security</h2>
+                <p>We implement security measures to maintain the safety of your information. However, no internet transmission is 100% secure.</p>
+                <h2 class="text-2xl font-bold text-white mb-4">4. Cookies</h2>
+                <p>This website uses technical session cookies for theme selection and authentication. No tracking cookies are used.</p>
+                <h2 class="text-2xl font-bold text-white mb-4">5. Third-Party Links</h2>
+                <p>We provide links to GitHub and LinkedIn. These sites have independent privacy policies.</p>
+            `
+        }
+    };
+
+    const openModal = (type) => {
+        if (!modalOverlay || !legalContent[type]) return;
+
+        modalTitle.textContent = legalContent[type].title;
+        modalContent.innerHTML = legalContent[type].content;
+
+        modalOverlay.classList.remove('hidden');
+        gsap.to(modalOverlay, {
+            opacity: 1,
+            duration: 0.4,
+            ease: "power2.out"
+        });
+
+        // Prevent body scroll
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closeModal = () => {
+        if (!modalOverlay) return;
+
+        gsap.to(modalOverlay, {
+            opacity: 0,
+            duration: 0.3,
+            ease: "power2.in",
+            onComplete: () => {
+                modalOverlay.classList.add('hidden');
+                document.body.style.overflow = '';
+            }
+        });
+    };
+
+    if (openTermsBtn) openTermsBtn.addEventListener('click', () => openModal('terms'));
+    if (openPrivacyBtn) openPrivacyBtn.addEventListener('click', () => openModal('privacy'));
+    if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+    if (modalOverlay) {
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) closeModal();
+        });
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !modalOverlay.classList.contains('hidden')) {
+            closeModal();
+        }
+    });
+
 });

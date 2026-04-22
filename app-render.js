@@ -21,7 +21,17 @@ const renderPortfolio = async () => {
 
             const skillsDoc = await db.collection('skills').doc('list').get();
             if (skillsDoc.exists) {
-                data.skills = Object.values(skillsDoc.data());
+                // Merge database skills with local skills, keeping both
+                const dbSkills = Object.values(skillsDoc.data());
+                const localSkills = data.skills || [];
+                const mergedSkills = [...localSkills];
+                
+                dbSkills.forEach(dbSkill => {
+                    if (!mergedSkills.some(s => s.name === dbSkill.name)) {
+                        mergedSkills.push(dbSkill);
+                    }
+                });
+                data.skills = mergedSkills;
             }
         } catch (err) {
             console.warn("Firebase fetch failed, using local fallback.", err);
@@ -45,6 +55,23 @@ const renderPortfolio = async () => {
             <p class="text-slate-400 mb-6 leading-relaxed">${profile.aboutBio1}</p>
             <p class="text-slate-400 mb-8 leading-relaxed">${profile.aboutBio2}</p>
         `;
+    }
+
+    // Dynamic Resume Link
+    const resumeBtn = document.getElementById('resume-link');
+    if (resumeBtn && profile.resumeUrl) {
+        resumeBtn.href = profile.resumeUrl;
+        // If it's an external link (Drive/Dropbox), remove 'download' attribute for better UX
+        if (profile.resumeUrl.startsWith('http')) {
+            resumeBtn.removeAttribute('download');
+            resumeBtn.target = "_blank";
+        }
+    }
+
+    // Dynamic Project Counter
+    const projectCounter = document.getElementById('project-counter');
+    if (projectCounter && profile.projectCount) {
+        projectCounter.textContent = profile.projectCount;
     }
 
     // 2. Render Projects
@@ -90,24 +117,49 @@ const renderPortfolio = async () => {
     // 3. Render Skills
     const skillsContainer = document.getElementById('skills-grid-container');
     if (skillsContainer) {
-        skillsContainer.innerHTML = skills.map((skill, index) => `
-            <div
-                class="p-6 rounded-3xl bg-white/5 border border-white/10 hover:border-brand-light/30 transition-all group fade-up-element"
-                style="transition-delay: ${index * 50}ms;">
-                <div class="flex items-center gap-4 mb-4">
-                    <div class="w-10 h-10 rounded-xl bg-brand-light/10 flex items-center justify-center text-brand-light text-xl group-hover:scale-110 transition-transform">
-                        <i class="ph ph-code"></i>
+        const getIcon = (name) => {
+            const n = name.toLowerCase();
+            if (n.includes('python')) return 'ph-file-py';
+            if (n.includes('c/c++')) return 'ph-terminal-window';
+            if (n.includes('java')) return 'ph-coffee';
+            if (n.includes('html')) return 'ph-globe';
+            if (n.includes('react')) return 'ph-atom';
+            if (n.includes('machine learning')) return 'ph-brain';
+            if (n.includes('sql')) return 'ph-database';
+            if (n.includes('opencv')) return 'ph-camera';
+            if (n.includes('office')) return 'ph-envelope-simple';
+            return 'ph-code';
+        };
+
+        skillsContainer.innerHTML = skills.map((skill, index) => {
+            const isOffice = skill.name.toLowerCase().includes('office');
+            const n = skill.name.toLowerCase();
+            let colorType = 'brand';
+            if (n.includes('python')) colorType = 'emerald';
+            if (n.includes('c/')) colorType = 'blue';
+            if (n.includes('java')) colorType = 'orange';
+            if (n.includes('html')) colorType = 'sky';
+            if (n.includes('react')) colorType = 'blue';
+            if (n.includes('machine learning')) colorType = 'fuchsia';
+            if (n.includes('sql')) colorType = 'slate';
+            if (n.includes('opencv')) colorType = 'teal';
+            if (n.includes('office')) colorType = 'rose';
+
+            return `
+                <div
+                    class="skill-tile flex items-center gap-3 p-3 rounded-2xl border transition-all duration-300 group ${isOffice ? 'sm:col-span-2' : ''}"
+                    data-color="${colorType}"
+                    style="transition-delay: ${index * 50}ms;">
+                    <div class="skill-icon-box w-10 h-10 shrink-0 flex items-center justify-center rounded-xl border text-xl group-hover:scale-110 transition-transform">
+                        <i class="ph ${getIcon(skill.name)}"></i>
                     </div>
-                    <div>
-                        <h4 class="text-white font-bold group-hover:text-brand-light transition-colors">${skill.name}</h4>
-                        <p class="text-[10px] text-brand-light uppercase tracking-widest font-bold">${skill.category}</p>
+                    <div class="flex-1">
+                        <h4 class="skill-title text-xs font-bold transition-colors leading-tight">${skill.name}</h4>
+                        <p class="skill-level text-[10px] font-medium mt-0.5">${skill.level}</p>
                     </div>
                 </div>
-                <div class="w-full bg-white/5 h-1.5 rounded-full overflow-hidden">
-                    <div class="bg-gradient-to-r from-brand-light to-brand-dark h-full rounded-full w-[85%] group-hover:w-full transition-all duration-1000"></div>
-                </div>
-            </div>
-        `).join('');
+            `;
+        }).join('');
     }
 
     // Apply specific "Fresher" or manual value overrides from data if necessary

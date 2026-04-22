@@ -109,8 +109,8 @@
                     <i class="ph ph-sun text-xl moon-icon"></i>
                 </button>
                 <a href="admin.html" id="admin-link"
-                    class="hidden px-5 py-2 rounded-full border border-brand-light bg-brand-light/10 text-brand-light font-bold hover:bg-brand-light hover:text-dark transition-all duration-300">Admin</a>
-                <a href="#contact"
+                    class="hidden px-5 py-2 rounded-full border border-brand-light bg-brand-light/10 text-brand-light font-bold hover:bg-brand-light hover:text-white transition-all duration-300">Admin</a>
+                <a href="#contact" id="hire-me-btn"
                     class="px-5 py-2 rounded-full border border-white/10 hover:border-brand-light/50 bg-white/5 hover:bg-white/10 text-white transition-all duration-300">Hire
                     Me</a>
             </div>
@@ -132,9 +132,9 @@
                 class="text-base font-medium hover:text-brand-light transition-colors mobile-link">Contact</a>
             <div class="flex flex-col gap-4 mt-4">
                 <a href="admin.html" id="admin-link-mobile"
-                    class="hidden w-full text-center px-5 py-3 rounded-xl border border-brand-light bg-brand-light/10 text-brand-light font-bold transition-colors hover:bg-brand-light hover:text-dark mobile-link">Admin Portal</a>
+                    class="hidden w-full text-center px-5 py-3 rounded-xl border border-brand-light bg-brand-light/10 text-brand-light font-bold transition-colors hover:bg-brand-light hover:text-white mobile-link">Admin Portal</a>
                 <div class="flex items-center justify-between">
-                    <a href="#contact"
+                    <a href="#contact" id="hire-me-btn-mobile"
                         class="flex-1 text-center px-5 py-3 rounded-xl border border-brand-light/20 bg-brand-light/10 text-brand-light font-medium transition-colors hover:bg-brand-light hover:text-dark mobile-link">Hire
                         Me</a>
                     <button id="theme-toggle-mobile"
@@ -171,7 +171,7 @@
                         I build interactive web experiences with a focus on motion, aesthetics, and usability.
                     </p>
                     <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-                        <a href="Resume_Amrit.pdf" download="Resume_Amrit.pdf"
+                        <a id="resume-link" href="Resume_Amrit.pdf" download="Resume_Amrit.pdf"
                             class="px-8 py-4 w-full sm:w-auto rounded-full bg-brand-light text-dark font-semibold transition-transform hover:scale-105 hover:shadow-lg hover:shadow-brand-light/20 flex items-center justify-center gap-2">
                             <i class="ph ph-download-simple text-xl"></i> Download Resume
                         </a>
@@ -200,288 +200,117 @@
 
         </section>
 
-        <!-- GitHub Stats Section -->
-        <section class="py-12 px-6 lg:px-12 bg-darker/30">
-            <div class="max-w-6xl mx-auto">
-                <div class="flex flex-col lg:flex-row items-center gap-12 fade-up-element">
-                    <div class="lg:w-1/3 text-center lg:text-left">
-                        <h2 class="text-sm font-bold tracking-widest text-brand-light uppercase mb-3">Live Coding</h2>
-                        <h3 class="text-3xl font-bold text-white mb-6">GitHub Activity</h3>
-                        <p class="text-slate-400 leading-relaxed mb-8">
-                            My coding journey is transparent and reflected in my GitHub activity. These stats show my
-                            consistent commitment to building and learning.
-                        </p>
-                        <a href="https://github.com/amritsugandh" target="_blank"
-                            class="inline-flex items-center gap-2 text-brand-light font-semibold hover:gap-3 transition-all">
-                            Visit Profile <i class="ph ph-arrow-right"></i>
-                        </a>
-                    </div>
-                    <div id="stats-grid" class="lg:w-2/3 w-full space-y-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <!-- Stats Card -->
-                            <div
-                                class="p-4 rounded-3xl bg-white/5 border border-white/10 overflow-hidden hover:border-brand-light/30 transition-all group flex flex-col items-center justify-center min-h-[160px]">
-                                <img src="https://github-readme-stats.vercel.app/api?username=amritsugandh&show_icons=true&theme=transparent&title_color=38bdf8&text_color=94a3b8&icon_color=38bdf8&border_color=38bdf800&hide_border=true&bg_color=00000000"
-                                    alt="Amrit's GitHub Stats" class="w-full h-auto group-hover:scale-[1.02] transition-transform">
-                            </div>
-                            <!-- Top Languages Card -->
-                            <div
-                                class="p-4 rounded-3xl bg-white/5 border border-white/10 overflow-hidden hover:border-brand-light/30 transition-all group flex flex-col items-center justify-center min-h-[160px]">
-                                <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=amritsugandh&layout=compact&theme=transparent&title_color=38bdf8&text_color=94a3b8&icon_color=38bdf8&hide_border=true&border_color=38bdf800&bg_color=00000000"
-                                    alt="Amrit's Top Languages" class="w-full h-auto group-hover:scale-[1.02] transition-transform">
-                            </div>
-                        </div>
-                        <!-- Activity Graph (Wide) -->
-                        <div
-                            class="p-4 rounded-3xl bg-white/5 border border-white/10 overflow-hidden hover:border-brand-light/30 transition-all group">
-                            <img src="https://github-readme-activity-graph.vercel.app/graph?username=amritsugandh&theme=react-dark&hide_border=true&area=true&bg_color=00000000&color=38bdf8"
-                                alt="Amrit's Activity Graph" class="w-full h-auto group-hover:scale-[1.01] transition-transform">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- About Section -->
-        <section id="about" class="py-16 px-6 lg:px-12 bg-darker/50">
-            <div class="max-w-6xl mx-auto">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-                    <div class="fade-up-element">
-                        <h2 class="text-sm font-bold tracking-widest text-brand-light uppercase mb-3">About Me</h2>
-                        <h3 id="about-headline" class="text-3xl md:text-4xl font-bold text-white mb-6">Design meets engineering.</h3>
-                        <div id="about-bio">
-                            <p class="text-slate-400 mb-6 leading-relaxed">
+
+        <!-- About & Foundation -->
+        <section id="about" class="py-12 px-6 lg:px-12 bg-darker/50 overflow-hidden transition-colors duration-500">
+            <div class="max-w-7xl mx-auto">
+                <!-- Top Row: Bio & Quick Metrics -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-10">
+                    <div class="lg:col-span-7 fade-up-element">
+                        <h2 class="text-xs font-bold tracking-[0.3em] text-brand-light uppercase mb-4">About Me</h2>
+                        <h3 id="about-headline" class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 leading-[1.1] tracking-tighter">Design meets engineering.</h3>
+                        <div id="about-bio" class="space-y-6">
+                            <p class="text-slate-400 text-lg leading-relaxed max-w-2xl">
                                 With a passion for minimalist aesthetics and clean code, I bridge the gap between design and
                                 development. I believe that the best digital products are not only visually striking but
                                 also incredibly intuitive and performant.
                             </p>
-                            <p class="text-slate-400 mb-8 leading-relaxed">
-                                My core stack is built around modern web standards: HTML5, CSS3/Tailwind, and Vanilla JavaScript, ensuring lightweight and blazing-fast applications.
+                            <p class="text-slate-400 text-lg leading-relaxed max-w-2xl">
+                                My core stack is built around modern web standards: HTML5, JavaScript (ES6+), and React, ensuring lightweight and blazing-fast applications.
                             </p>
                         </div>
-
-                        <div class="grid grid-cols-2 gap-6">
-                            <div
-                                class="p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-brand-light/30 transition-colors">
-                                <h4 class="text-4xl font-bold text-white mb-1 tracking-tighter">Fresher</h4>
-                                <p class="text-sm text-slate-500">Years Exp.</p>
-                            </div>
-                            <div
-                                class="p-5 rounded-2xl bg-white/5 border border-white/10 hover:brand-dark/30 transition-colors">
-                                <h4 class="text-4xl font-bold text-white mb-1 tracking-tighter">5+</h4>
-                                <p class="text-sm text-slate-500">Projects Done</p>
-                            </div>
-                        </div>
                     </div>
 
-                    <!-- Skills Grid replacing traditional 'about image' -->
-                    <div
-                        class="relative w-full rounded-3xl overflow-hidden glass-card fade-in-right-element group bg-white/5 border border-white/10 p-8 shadow-2xl">
-                        <!-- Background and Glow Effects -->
-                        <div
-                            class="absolute inset-0 bg-gradient-to-tr from-brand-dark/10 to-brand-light/10 group-hover:opacity-50 transition-opacity duration-700 opacity-30">
+                    <div class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-4 fade-up-element">
+                        <div class="p-8 rounded-[2rem] bg-white/5 border border-white/10 hover:border-brand-light/30 transition-all duration-500 group">
+                            <h4 class="text-4xl font-extrabold text-white mb-2 group-hover:text-brand-light transition-colors">Fresher</h4>
+                            <p class="text-xs font-bold text-slate-500 uppercase tracking-widest">Experience</p>
                         </div>
-                        <div
-                            class="absolute -top-12 -right-12 w-48 h-48 bg-brand-light/20 blur-[50px] rounded-full pointer-events-none">
+                        <div class="p-8 rounded-[2rem] bg-white/5 border border-white/10 hover:border-brand-light/30 transition-all duration-500 group">
+                            <h4 id="project-counter" class="text-4xl font-extrabold text-white mb-2 group-hover:text-brand-light transition-colors">5+</h4>
+                            <p class="text-xs font-bold text-slate-500 uppercase tracking-widest">Projects</p>
                         </div>
-                        <div
-                            class="absolute -bottom-12 -left-12 w-48 h-48 bg-fuchsia-500/10 blur-[50px] rounded-full pointer-events-none">
-                        </div>
+                    </div>
+                </div>
 
+                <!-- Bottom Row: Skills & Education (Side-by-Side) -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch pt-4 border-t border-white/5">
+                    <!-- Skills Card -->
+                    <div class="relative rounded-[1.5rem] overflow-hidden glass-card fade-up-element group bg-white/5 border border-white/10 p-5 sm:p-6 shadow-xl h-full flex flex-col">
                         <div class="relative z-10">
-                            <h3 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                                <i class="ph ph-wrench text-brand-light text-3xl"></i> Skills & Tools
-                            </h3>
-
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <!-- Python / Django -->
-                                <div
-                                    class="flex items-center gap-3 bg-darker/40 p-3 rounded-xl border border-white/5 hover:border-brand-light/30 transition-all">
-                                    <div
-                                        class="w-10 h-10 shrink-0 flex items-center justify-center bg-white/5 rounded-lg text-emerald-400 text-2xl">
-                                        <i class="ph ph-file-py"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="text-white text-sm font-semibold">Python (Django)</h4>
-                                        <p class="text-xs text-slate-500">Intermediate</p>
-                                    </div>
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-10 h-10 rounded-xl bg-brand-light/10 flex items-center justify-center text-brand-light">
+                                    <i class="ph ph-wrench text-xl"></i>
                                 </div>
-
-                                <!-- C/C++ -->
-                                <div
-                                    class="flex items-center gap-3 bg-darker/40 p-3 rounded-xl border border-white/5 hover:border-brand-light/30 transition-all">
-                                    <div
-                                        class="w-10 h-10 shrink-0 flex items-center justify-center bg-white/5 rounded-lg text-blue-400 text-2xl">
-                                        <i class="ph ph-terminal-window"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="text-white text-sm font-semibold">C/C++</h4>
-                                        <p class="text-xs text-slate-500">Intermediate</p>
-                                    </div>
-                                </div>
-
-                                <!-- Java -->
-                                <div
-                                    class="flex items-center gap-3 bg-darker/40 p-3 rounded-xl border border-white/5 hover:border-brand-light/30 transition-all">
-                                    <div
-                                        class="w-10 h-10 shrink-0 flex items-center justify-center bg-white/5 rounded-lg text-orange-400 text-2xl">
-                                        <i class="ph ph-coffee"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="text-white text-sm font-semibold">Java</h4>
-                                        <p class="text-xs text-slate-500">Basic</p>
-                                    </div>
-                                </div>
-
-                                <!-- HTML / CSS -->
-                                <div
-                                    class="flex items-center gap-3 bg-darker/40 p-3 rounded-xl border border-white/5 hover:border-brand-light/30 transition-all">
-                                    <div
-                                        class="w-10 h-10 shrink-0 flex items-center justify-center bg-white/5 rounded-lg text-sky-400 text-2xl">
-                                        <i class="ph ph-globe"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="text-white text-sm font-semibold">HTML5 & CSS3</h4>
-                                        <p class="text-xs text-slate-500">Intermediate</p>
-                                    </div>
-                                </div>
-
-                                <!-- React.js -->
-                                <div
-                                    class="flex items-center gap-3 bg-darker/40 p-3 rounded-xl border border-white/5 hover:border-brand-light/30 transition-all">
-                                    <div
-                                        class="w-10 h-10 shrink-0 flex items-center justify-center bg-white/5 rounded-lg text-brand-light text-2xl">
-                                        <i class="ph ph-atom"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="text-white text-sm font-semibold">React.js</h4>
-                                        <p class="text-xs text-slate-500">Framework</p>
-                                    </div>
-                                </div>
-
-                                <!-- Machine Learning -->
-                                <div
-                                    class="flex items-center gap-3 bg-darker/40 p-3 rounded-xl border border-white/5 hover:border-brand-light/30 transition-all">
-                                    <div
-                                        class="w-10 h-10 shrink-0 flex items-center justify-center bg-white/5 rounded-lg text-fuchsia-400 text-2xl">
-                                        <i class="ph ph-brain"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="text-white text-sm font-semibold">Machine Learning</h4>
-                                        <p class="text-xs text-slate-500">Deep Learning</p>
-                                    </div>
-                                </div>
-
-                                <!-- SQL -->
-                                <div
-                                    class="flex items-center gap-3 bg-darker/40 p-3 rounded-xl border border-white/5 hover:border-brand-light/30 transition-all">
-                                    <div
-                                        class="w-10 h-10 shrink-0 flex items-center justify-center bg-white/5 rounded-lg text-slate-300 text-2xl">
-                                        <i class="ph ph-database"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="text-white text-sm font-semibold">SQL / MySQL</h4>
-                                        <p class="text-xs text-slate-500">Databases</p>
-                                    </div>
-                                </div>
-
-                                <!-- OpenCV -->
-                                <div
-                                    class="flex items-center gap-3 bg-darker/40 p-3 rounded-xl border border-white/5 hover:border-brand-light/30 transition-all">
-                                    <div
-                                        class="w-10 h-10 shrink-0 flex items-center justify-center bg-white/5 rounded-lg text-teal-400 text-2xl">
-                                        <i class="ph ph-camera"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="text-white text-sm font-semibold">OpenCV</h4>
-                                        <p class="text-xs text-slate-500">Computer Vision</p>
-                                    </div>
-                                </div>
-
-                                <!-- Office Tools -->
-                                <div
-                                    class="flex items-center gap-3 bg-darker/40 p-3 rounded-xl border border-white/5 hover:border-brand-light/30 transition-all sm:col-span-2">
-                                    <div
-                                        class="w-10 h-10 shrink-0 flex items-center justify-center bg-white/5 rounded-lg text-rose-400 text-2xl">
-                                        <i class="ph ph-envelope-simple"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="text-white text-sm font-semibold">MS Office 365 & Outlook</h4>
-                                        <p class="text-xs text-slate-500">Professional Tools</p>
-                                    </div>
-                                </div>
+                                <h4 class="text-xl font-bold text-white uppercase tracking-tight">Skills & Tools</h4>
+                            </div>
+                            
+                            <div id="skills-grid-container" class="grid grid-cols-2 gap-x-4 gap-y-4">
+                                <!-- Dynamic skills injected here -->
                             </div>
                         </div>
+                        <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-brand-light/5 blur-3xl rounded-full"></div>
                     </div>
-                    <!-- Education Qualification Section -->
-                    <div class="mt-6 sm:mt-10 max-w-4xl mx-auto fade-up-element w-full">
-                        <div
-                            class="relative w-full rounded-3xl overflow-hidden glass-card bg-white/5 border border-white/10 p-8 md:p-12 shadow-2xl">
-                            <!-- Background and Glow Effects -->
-                            <div
-                                class="absolute inset-0 bg-gradient-to-tr from-brand-dark/10 to-brand-light/10 opacity-30 pointer-events-none">
+
+                    <!-- Education Card -->
+                    <div class="relative rounded-[1.5rem] overflow-hidden glass-card fade-up-element group bg-white/5 border border-white/10 p-5 sm:p-6 shadow-xl h-full flex flex-col">
+                        <div class="relative z-10 flex-1">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-10 h-10 rounded-xl bg-fuchsia-500/10 flex items-center justify-center text-fuchsia-400">
+                                    <i class="ph ph-graduation-cap text-xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-white uppercase tracking-tight">Education</h4>
                             </div>
-                            <div
-                                class="absolute -top-12 -right-12 w-48 h-48 bg-brand-light/20 blur-[50px] rounded-full pointer-events-none">
-                            </div>
-
-                            <div class="relative z-10">
-                                <h3 class="text-2xl md:text-3xl font-bold text-white mb-10 flex items-center gap-3">
-                                    🎓 Education Qualification
-                                </h3>
-
-                                <div class="relative border-l-2 border-brand-light/30 ml-3 md:ml-4 space-y-10">
-                                    <!-- Item 1 (MCA) -->
-                                    <div class="relative pl-8 md:pl-10 group">
-                                        <div
-                                            class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-brand-light shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-125 transition-transform duration-300">
-                                        </div>
-                                        <h4 class="text-xl font-bold text-white mb-1">Master of Computer Applications
-                                            (MCA)</h4>
-                                        <p class="text-brand-light mb-2">Indian Institute of Technology (IIT) PATNA &
-                                            Indian Institute of Information Technology (IIIT) RANCHI</p>
-                                        <p class="text-sm text-slate-400">August 2025 - Present (Expected: June 2027)
-                                        </p>
+                            
+                            <div class="space-y-4 relative before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-white/5">
+                                <!-- MCA -->
+                                <div class="relative pl-10 group/item">
+                                    <div class="edu-node edu-sky">
+                                        <i class="ph-bold ph-diamond"></i>
                                     </div>
+                                    <h5 class="text-lg font-bold text-white leading-tight">Master of Computer Applications (MCA)</h5>
+                                    <p class="text-brand-light font-medium text-sm mt-1">Indian Institute of Technology, Patna & Indian Institute of Information Technology, Ranchi</p>
+                                    <p class="text-slate-500 text-xs mt-2 font-medium tracking-wide uppercase">Aug 2025 - Present <span class="text-slate-600 ml-1">(Expected: June 2027)</span></p>
+                                </div>
 
-                                    <!-- Item 2 (BCA) -->
-                                    <div class="relative pl-8 md:pl-10 group">
-                                        <div
-                                            class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-brand-light shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-125 transition-transform duration-300">
-                                        </div>
-                                        <h4 class="text-xl font-bold text-white mb-1">Bachelor of Computer Applications
-                                            (BCA)</h4>
-                                        <p class="text-brand-light mb-2">L.N. Mishra College of Business Management
-                                            (Bihar University)</p>
-                                        <p class="text-sm text-slate-400">July 2021 - June 2024 • 73.25%</p>
+                                <!-- BCA -->
+                                <div class="relative pl-10 group/item">
+                                    <div class="edu-node edu-sky">
+                                        <i class="ph-bold ph-diamond"></i>
                                     </div>
+                                    <h5 class="text-lg font-bold text-white leading-tight">Bachelor of Computer Applications (BCA)</h5>
+                                    <p class="text-sky-400 font-medium text-sm mt-1">L.N. Mishra College of Business Management (Bihar University)</p>
+                                    <p class="text-slate-500 text-xs mt-2 font-medium tracking-wide uppercase">July 2021 - June 2024 • 73.25%</p>
+                                </div>
 
-                                    <!-- Item 3 (12th) -->
-                                    <div class="relative pl-8 md:pl-10 group">
-                                        <div
-                                            class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-brand-light shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-125 transition-transform duration-300">
-                                        </div>
-                                        <h4 class="text-xl font-bold text-white mb-1">12th Standard</h4>
-                                        <p class="text-brand-light mb-2">Sushant Public School (C.B.S.E)</p>
-                                        <p class="text-sm text-slate-400">Completed in 2021 • 75%</p>
+                                <!-- 12th -->
+                                <div class="relative pl-10 group/item text-slate-300">
+                                    <div class="edu-node edu-fuchsia">
+                                         <i class="ph-bold ph-book-open"></i>
                                     </div>
+                                    <h5 class="text-lg font-bold text-white leading-tight">12th Standard</h5>
+                                    <p class="text-fuchsia-400 font-medium text-sm mt-1">Sushant Public School (C.B.S.E)</p>
+                                    <p class="text-slate-500 text-xs mt-2 font-medium tracking-wide uppercase">Completed in 2021 • 75%</p>
+                                </div>
 
-                                    <!-- Item 4 (10th) -->
-                                    <div class="relative pl-8 md:pl-10 group">
-                                        <div
-                                            class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-brand-light shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-125 transition-transform duration-300">
-                                        </div>
-                                        <h4 class="text-xl font-bold text-white mb-1">10th Standard</h4>
-                                        <p class="text-brand-light mb-2">Sushant Public School (C.B.S.E)</p>
-                                        <p class="text-sm text-slate-400">Completed in 2019 • 66.8%</p>
+                                <!-- 10th -->
+                                <div class="relative pl-10 group/item text-slate-300">
+                                    <div class="edu-node edu-emerald">
+                                         <i class="ph-bold ph-read-cv-logo"></i>
                                     </div>
+                                    <h5 class="text-lg font-bold text-white leading-tight">10th Standard</h5>
+                                    <p class="text-emerald-400 font-medium text-sm mt-1">Sushant Public School (C.B.S.E)</p>
+                                    <p class="text-slate-500 text-xs mt-2 font-medium tracking-wide uppercase">Completed in 2019 • 66.8%</p>
                                 </div>
                             </div>
                         </div>
+                        <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-fuchsia-500/5 blur-3xl rounded-full"></div>
                     </div>
                 </div>
             </div>
         </section>
+
 
         <!-- Services Section -->
         <section id="services" class="py-20 px-6 lg:px-12 relative overflow-hidden">
@@ -680,7 +509,7 @@
                 </div>
 
                 <div class="mt-12 text-center fade-up-element">
-                    <a href="#"
+                    <a href="https://github.com/amritsugandh?tab=repositories" target="_blank"
                         class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 text-white hover:bg-white/5 hover:border-white/30 transition-all">
                         View All Projects <i class="ph ph-arrow-right"></i>
                     </a>
@@ -688,105 +517,18 @@
             </div>
         </section>
 
-        <!-- Testimonials Section -->
-        <section class="py-20 px-6 lg:px-12 bg-darker/20">
-            <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-16 fade-up-element">
-                    <h2 class="text-sm font-bold tracking-widest text-brand-light uppercase mb-3">Feedbacks</h2>
-                    <h3 class="text-4xl md:text-5xl font-bold text-white">What Clients Say</h3>
-                </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Testimonial 1 -->
-                    <div
-                        class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-brand-light/30 transition-all group fade-up-element">
-                        <div class="flex gap-1 text-brand-light mb-6">
-                            <i class="ph ph-star-fill"></i>
-                            <i class="ph ph-star-fill"></i>
-                            <i class="ph ph-star-fill"></i>
-                            <i class="ph ph-star-fill"></i>
-                            <i class="ph ph-star-fill"></i>
-                        </div>
-                        <p class="text-slate-400 italic mb-8 leading-relaxed">
-                            "Amrit delivered a high-quality solution for our reservation system. His attention to detail
-                            and expertise in UI/UX made the platform incredibly easy to use for our team."
-                        </p>
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-full bg-brand-light/20 flex items-center justify-center text-brand-light text-xl">
-                                <i class="ph ph-user"></i>
-                            </div>
-                            <div>
-                                <h5 class="text-white font-bold">John Doe</h5>
-                                <p class="text-xs text-slate-500">Project Manager, TechCorp</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Testimonial 2 -->
-                    <div
-                        class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-fuchsia-500/30 transition-all group fade-up-element"
-                        style="transition-delay: 100ms;">
-                        <div class="flex gap-1 text-fuchsia-400 mb-6">
-                            <i class="ph ph-star-fill"></i>
-                            <i class="ph ph-star-fill"></i>
-                            <i class="ph ph-star-fill"></i>
-                            <i class="ph ph-star-fill"></i>
-                            <i class="ph ph-star-fill"></i>
-                        </div>
-                        <p class="text-slate-400 italic mb-8 leading-relaxed">
-                            "The AI concierge Amrit built is a game-changer. It's smart, responsive, and has simplified
-                            our event planning process significantly. Highly professional developer!"
-                        </p>
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-full bg-fuchsia-500/20 flex items-center justify-center text-fuchsia-400 text-xl">
-                                <i class="ph ph-user"></i>
-                            </div>
-                            <div>
-                                <h5 class="text-white font-bold">Sarah Williams</h5>
-                                <p class="text-xs text-slate-500">Event Coordinator, GlobalEvents</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Testimonial 3 -->
-                    <div
-                        class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-emerald-400/30 transition-all group fade-up-element"
-                        style="transition-delay: 200ms;">
-                        <div class="flex gap-1 text-emerald-400 mb-6">
-                            <i class="ph ph-star-fill"></i>
-                            <i class="ph ph-star-fill"></i>
-                            <i class="ph ph-star-fill"></i>
-                            <i class="ph ph-star-fill"></i>
-                            <i class="ph ph-star-fill"></i>
-                        </div>
-                        <p class="text-slate-400 italic mb-8 leading-relaxed">
-                            "Working with Amrit was a pleasure. He understood the requirements perfectly and delivered a
-                            modern, responsive website that exceeded our expectations."
-                        </p>
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-full bg-emerald-400/20 flex items-center justify-center text-emerald-400 text-xl">
-                                <i class="ph ph-user"></i>
-                            </div>
-                            <div>
-                                <h5 class="text-white font-bold">Robert Chen</h5>
-                                <p class="text-xs text-slate-500">Founder, StartupX</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- Technical Blog Section -->
         <section id="blog" class="py-20 px-6 lg:px-12 bg-dark">
             <div class="max-w-6xl mx-auto">
-                <div class="flex flex-col md:flex-row justify-between items-end mb-16 fade-up-element gap-6">
-                    <div>
+                <div class="flex flex-col md:flex-row justify-between items-center md:items-end mb-16 fade-up-element gap-6 text-center md:text-left">
+                    <div class="w-full md:w-auto">
                         <h2 class="text-sm font-bold tracking-widest text-brand-light uppercase mb-3">Insights</h2>
-                        <h3 class="text-4xl md:text-5xl font-bold text-white">Latest Articles</h3>
+                        <h3 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">Latest Articles</h3>
                     </div>
-                    <a href="#"
-                        class="text-brand-light font-semibold hover:gap-3 transition-all flex items-center gap-2 group">
+                    <a href="https://www.linkedin.com/in/amrit-sugandh-668419299/" target="_blank"
+                        class="text-brand-light font-semibold hover:gap-3 transition-all flex items-center gap-2 group mx-auto md:mx-0">
                         View All Posts <i class="ph ph-arrow-right group-hover:translate-x-1 transition-transform"></i>
                     </a>
                 </div>
@@ -813,7 +555,7 @@
                             <p class="text-sm text-slate-400 mb-6 line-clamp-3 leading-relaxed">
                                 Exploring how large language models can transform static event planning into dynamic, interactive concierge experiences.
                             </p>
-                            <a href="#" class="inline-flex items-center gap-2 text-sm font-bold text-white group-hover:gap-3 transition-all">
+                            <a href="https://www.linkedin.com/in/amrit-sugandh-668419299/" target="_blank" class="inline-flex items-center gap-2 text-sm font-bold text-white group-hover:gap-3 transition-all">
                                 Read More <i class="ph ph-arrow-up-right"></i>
                             </a>
                         </div>
@@ -841,7 +583,7 @@
                             <p class="text-sm text-slate-400 mb-6 line-clamp-3 leading-relaxed">
                                 Why translucent interfaces are more than just a trend and how they improve hierarchy in complex data environments.
                             </p>
-                            <a href="#" class="inline-flex items-center gap-2 text-sm font-bold text-white group-hover:gap-3 transition-all">
+                            <a href="https://www.linkedin.com/in/amrit-sugandh-668419299/" target="_blank" class="inline-flex items-center gap-2 text-sm font-bold text-white group-hover:gap-3 transition-all">
                                 Read More <i class="ph ph-arrow-up-right"></i>
                             </a>
                         </div>
@@ -869,7 +611,7 @@
                             <p class="text-sm text-slate-400 mb-6 line-clamp-3 leading-relaxed">
                                 Lessons learned from implementing real-time seat booking and session synchronization in a production environment.
                             </p>
-                            <a href="#" class="inline-flex items-center gap-2 text-sm font-bold text-white group-hover:gap-3 transition-all">
+                            <a href="https://www.linkedin.com/in/amrit-sugandh-668419299/" target="_blank" class="inline-flex items-center gap-2 text-sm font-bold text-white group-hover:gap-3 transition-all">
                                 Read More <i class="ph ph-arrow-up-right"></i>
                             </a>
                         </div>
@@ -1021,10 +763,10 @@
                 &copy; 2026 Amrit Sugandh. All rights reserved.
             </p>
             <div class="flex items-center gap-6">
-                <a href="#"
-                    class="text-slate-500 hover:text-white transition-colors text-xs uppercase tracking-widest font-semibold">Terms</a>
-                <a href="#"
-                    class="text-slate-500 hover:text-white transition-colors text-xs uppercase tracking-widest font-semibold">Privacy</a>
+                <button id="open-terms"
+                    class="text-slate-500 hover:text-white transition-colors text-xs uppercase tracking-widest font-semibold footer-link">Terms</button>
+                <button id="open-privacy"
+                    class="text-slate-500 hover:text-white transition-colors text-xs uppercase tracking-widest font-semibold footer-link">Privacy</button>
             </div>
         </div>
     </footer>
@@ -1034,6 +776,27 @@
         class="fixed bottom-8 right-8 w-14 h-14 bg-brand-light text-dark rounded-full shadow-2xl flex items-center justify-center text-2xl z-50 opacity-0 translate-y-10 pointer-events-none transition-all duration-500 hover:bg-white hover:scale-110 active:scale-95">
         <i class="ph ph-arrow-up font-bold"></i>
     </button>
+
+    <!-- Legal Modals -->
+    <div id="legal-modal-overlay" class="fixed inset-0 z-[100] bg-dark/80 backdrop-blur-md hidden opacity-0 transition-all duration-500 flex items-center justify-center px-6">
+        <div class="relative w-full max-w-4xl max-h-[85vh] glass-card overflow-hidden flex flex-col p-0">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between p-6 border-b border-white/5 bg-white/5">
+                <h3 id="modal-title" class="text-2xl font-bold text-white">Legal Document</h3>
+                <button id="close-legal-modal" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-brand-light hover:text-dark transition-all">
+                    <i class="ph ph-x text-xl"></i>
+                </button>
+            </div>
+            <!-- Modal Body -->
+            <div id="modal-content" class="flex-1 overflow-y-auto p-8 md:p-12 text-slate-400 space-y-6 custom-scrollbar">
+                <!-- Content injected via JS -->
+            </div>
+            <!-- Modal Footer -->
+            <div class="p-6 border-t border-white/5 text-center bg-white/5">
+                <p class="text-xs text-slate-500 uppercase tracking-[0.2em] font-bold">&copy; 2026 Amrit Sugandh</p>
+            </div>
+        </div>
+    </div>
 
     <!-- GSAP for premium animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>

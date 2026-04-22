@@ -7,7 +7,7 @@ const portfolioData = {
         tagline: "I build interactive web experiences with a focus on motion, aesthetics, and usability.",
         aboutHeadline: "Design meets engineering.",
         aboutBio1: "With a passion for minimalist aesthetics and clean code, I bridge the gap between design and development. I believe that the best digital products are not only visually striking but also incredibly intuitive and performant.",
-        aboutBio2: "My core stack is built around modern web standards: HTML5, CSS3/Tailwind, and Vanilla JavaScript, ensuring lightweight and blazing-fast applications.",
+        aboutBio2: "My core stack is built around modern web standards: HTML5, JavaScript (ES6+), and React, ensuring lightweight and blazing-fast applications.",
         yearsExp: "Fresher",
         projectsDone: "5+"
     },
@@ -50,7 +50,8 @@ const portfolioData = {
         { name: "React.js", level: "Framework", category: "Frontend" },
         { name: "Machine Learning", level: "Deep Learning", category: "AI" },
         { name: "SQL / MySQL", level: "Databases", category: "Core" },
-        { name: "OpenCV", level: "Computer Vision", category: "AI" }
+        { name: "OpenCV", level: "Computer Vision", category: "AI" },
+        { name: "MS Office 365 & Outlook", level: "Professional Tools", category: "Productivity" }
     ],
     blogs: [
         {

@@ -137,19 +137,47 @@
   box-shadow: 0 4px 20px -10px rgba(0, 0, 0, 0.05);
 }
 
-.light-mode #navbar .text-white {
-  color: #0f172a;
+.light-mode #navbar .text-white { color: #0f172a; }
+.light-mode #navbar a:hover:not(.bg-brand-light):not([id*="hire-me"]):not([id*="admin"]) { color: #0ea5e9 !important; }
+
+/* Mobile Navigation Light Theme */
+.light-mode #mobile-menu-btn { color: #1e293b !important; }
+.light-mode #mobile-menu {
+  background-color: rgba(255, 255, 255, 0.98) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1) !important;
+}
+.light-mode .mobile-link { color: #1e293b !important; }
+.light-mode .mobile-link:hover { color: #0ea5e9 !important; background: transparent !important; }
+
+/* Unified Premium Button Interactivity for Light Theme */
+.light-mode #navbar #admin-link:hover,
+.light-mode #navbar #hire-me-btn:hover,
+.light-mode #mobile-menu #admin-link-mobile:hover,
+.light-mode #mobile-menu #admin-link-mobile:active,
+.light-mode #mobile-menu #hire-me-btn-mobile:hover,
+.light-mode #mobile-menu #hire-me-btn-mobile:active,
+.light-mode .bg-brand-light:hover {
+  background-color: #0284c7 !important;
+  color: #ffffff !important;
+  border-color: #0284c7 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -5px rgba(14, 165, 233, 0.4) !important;
 }
 
-.light-mode #navbar a:hover {
-  color: #0ea5e9 !important;
+.light-mode #theme-toggle-mobile {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  color: #1e293b !important;
 }
 
 .light-mode .text-slate-300,
 .light-mode .text-slate-400 {
   color: #475569;
-  /* Slate 600 */
 }
+
+/* Slate 600 */
+
 
 /* Secondary contrast for labels */
 .light-mode .text-slate-500 {
@@ -160,6 +188,22 @@
 .light-mode .text-white {
   color: #0f172a;
   /* Slate 900 */
+}
+
+/* Global Heading Sizing Adjustments for Balance */
+h2 {
+  letter-spacing: -0.02em;
+}
+
+.text-5xl {
+  font-size: 2.75rem;
+  /* Slightly reduced for balance */
+}
+
+@media (min-width: 768px) {
+  .md\:text-7xl {
+    font-size: 4rem;
+  }
 }
 
 .light-mode .bg-dark,
@@ -262,7 +306,7 @@
 }
 
 /* GitHub Stats Light Overrides */
-.light-mode #stats-grid > div {
+.light-mode #stats-grid>div {
   background-color: #ffffff !important;
   border-color: rgba(0, 0, 0, 0.1) !important;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
@@ -307,6 +351,24 @@
   color: #1e293b !important;
 }
 
+/* Fix project card link contrast in light mode hover */
+.light-mode #projects a[class*="hover:text-white"]:hover {
+  color: #0ea5e9 !important;
+}
+
+.light-mode #projects a[class*="text-slate-500"]:hover {
+  color: #0ea5e9 !important;
+}
+
+/* Footer Link Fix for Light Mode */
+.light-mode footer .footer-link {
+  color: #475569 !important;
+}
+
+.light-mode footer .footer-link:hover {
+  color: #0ea5e9 !important;
+}
+
 /* --- Global Button Refinements --- */
 button,
 .btn,
@@ -322,6 +384,7 @@ input[type="submit"],
   border-color: rgba(0, 0, 0, 0.05) !important;
 }
 
+/* Force High-Contrast on Brand Elements in Light Mode */
 .light-mode .bg-brand-light {
   background-color: #0ea5e9 !important;
   color: #ffffff !important;
@@ -329,15 +392,145 @@ input[type="submit"],
   box-shadow: 0 4px 12px -2px rgba(14, 165, 233, 0.3);
 }
 
-.light-mode .bg-brand-light:hover {
-  background-color: #0284c7 !important;
-  box-shadow: 0 8px 20px -4px rgba(14, 165, 233, 0.4);
-  transform: translateY(-2px);
+.light-mode #navbar a[href="#contact"].bg-white\/5 {
+  border-color: #0ea5e9 !important;
+  color: #0ea5e9 !important;
+  background-color: transparent !important;
 }
 
-/* Secondary Buttons (Glass/Ghost) */
-.light-mode .bg-white\/5,
-.light-mode .bg-white\/10 {
+.light-mode #navbar a[href="#contact"].bg-white\/5:hover {
+  background-color: #0ea5e9 !important;
+  color: #ffffff !important;
+}
+
+/* Specific button in Hero (Work View) */
+.light-mode a[href="#projects"].bg-white\/10 {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #475569 !important;
+}
+
+/* --- About & Foundation Refinements --- */
+#about .glass-card {
+  height: 100%;
+  background-color: rgba(15, 23, 42, 0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(12px);
+  transition: background-color 0.5s ease, border-color 0.5s ease;
+}
+
+.light-mode #about .glass-card {
+  background-color: rgba(248, 250, 252, 0.8) !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+#about .bg-darker\/40 {
+  background-color: rgba(15, 23, 42, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.03) !important;
+  transition: background-color 0.5s ease;
+}
+
+.light-mode #about .bg-darker\/40 {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+  border: 1px solid rgba(15, 23, 42, 0.05) !important;
+}
+
+/* Light Mode Text Contrast Overrides */
+.light-mode #about h3,
+.light-mode #about h4,
+.light-mode #about h5,
+.light-mode #about .text-white {
+  color: #1e293b !important;
+}
+
+.light-mode #about p,
+.light-mode #about .text-slate-400 {
+  color: #475569 !important;
+}
+
+@media (min-width: 1024px) {
+  #about .lg\:col-span-7 {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* Education Timeline Glow & Line */
+#about .relative.space-y-10::before {
+  background: linear-gradient(to bottom, #0ea5e9, #d946ef, transparent);
+  box-shadow: 0 0 15px rgba(14, 165, 233, 0.2);
+}
+
+.light-mode #about .relative.space-y-10::before {
+  background: #e2e8f0;
+}
+
+/* Marker Overrides for Light Mode */
+.light-mode #about .rounded-full.bg-dark {
+  background-color: #ffffff !important;
+}
+
+.light-mode #about p.text-slate-500 {
+  color: #64748b !important;
+}
+
+/* Skills Indicator Progress Bar */
+#skills-grid-container .h-1\.5 {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.light-mode #skills-grid-container .h-1\.5 {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Legal Modal Styling Refinements */
+#legal-modal-overlay.hidden {
+  display: none;
+}
+
+#legal-modal-overlay:not(.hidden) {
+  display: flex;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(56, 189, 248, 0.2);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(56, 189, 248, 0.4);
+}
+
+.light-mode #legal-modal-overlay {
+  background: rgba(241, 245, 249, 0.85);
+}
+
+.light-mode #modal-content {
+  color: #334155 !important;
+}
+
+.light-mode #modal-title {
+  color: #0f172a !important;
+}
+
+/* Admin & Hire Me Link Hover Polish - Light Mode */
+body.light-mode #admin-link:hover,
+body.light-mode #admin-link-mobile:hover,
+body.light-mode #hire-me-btn:hover {
+  background-color: #0ea5e9 !important;
+  color: #ffffff !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 4px 12px -2px rgba(14, 165, 233, 0.4);
+
   background-color: #ffffff !important;
   border-color: #e2e8f0 !important;
   color: #1e293b !important;
@@ -410,4 +603,340 @@ input[type="submit"],
   background-color: #f1f5f9 !important;
   border-color: #cbd5e1 !important;
   color: #475569 !important;
+}
+
+/* --- About & Foundation Refinements --- */
+#about .glass-card {
+  height: 100%;
+  background-color: rgba(15, 23, 42, 0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(12px);
+  transition: background-color 0.5s ease, border-color 0.5s ease;
+}
+
+.light-mode #about .glass-card {
+  background-color: rgba(248, 250, 252, 0.8) !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+#about .bg-darker\/40 {
+  background-color: rgba(15, 23, 42, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.03) !important;
+  transition: background-color 0.5s ease;
+}
+
+.light-mode #about .bg-darker\/40 {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+  border: 1px solid rgba(15, 23, 42, 0.05) !important;
+}
+
+/* Light Mode Text Contrast Overrides */
+.light-mode #about h3,
+.light-mode #about h4,
+.light-mode #about h5,
+.light-mode #about .text-white {
+  color: #1e293b !important;
+}
+
+.light-mode #about p,
+.light-mode #about .text-slate-400 {
+  color: #475569 !important;
+}
+
+@media (min-width: 1024px) {
+  #about .lg\:col-span-7 {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* Education Timeline Glow & Line */
+#about .relative.space-y-10::before {
+  background: linear-gradient(to bottom, #0ea5e9, #d946ef, transparent);
+  box-shadow: 0 0 15px rgba(14, 165, 233, 0.2);
+}
+
+.light-mode #about .relative.space-y-10::before {
+  background: #e2e8f0;
+}
+
+/* Marker Overrides for Light Mode */
+.light-mode #about .rounded-full.bg-dark {
+  background-color: #ffffff !important;
+}
+
+.light-mode #about p.text-slate-500 {
+  color: #64748b !important;
+}
+
+/* Skills Indicator Progress Bar */
+#skills-grid-container .h-1\.5 {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.light-mode #skills-grid-container .h-1\.5 {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Legal Modal Styling Refinements */
+#legal-modal-overlay.hidden {
+  display: none;
+}
+
+#legal-modal-overlay:not(.hidden) {
+  display: flex;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(56, 189, 248, 0.2);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(56, 189, 248, 0.4);
+}
+
+.light-mode #legal-modal-overlay {
+  background: rgba(241, 245, 249, 0.85);
+}
+
+.light-mode #modal-content {
+  color: #334155 !important;
+}
+
+.light-mode #modal-title {
+  color: #0f172a !important;
+}
+
+/* Admin & Hire Me Link Hover Polish - Light Mode */
+body.light-mode #admin-link:hover,
+body.light-mode #admin-link-mobile:hover,
+body.light-mode #hire-me-btn:hover {
+  background-color: #0ea5e9 !important;
+  color: #ffffff !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 4px 12px -2px rgba(14, 165, 233, 0.4);
+}
+
+/* Modal Body Text for Light Mode */
+.light-mode #modal-content h2,
+.light-mode #modal-content h1 {
+  color: #0f172a !important;
+}
+
+/* --- Education Nodes (Geometric Polish) --- */
+.edu-node {
+  position: absolute;
+  left: 0;
+  top: 0.375rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: #0f172a;
+  border: 2px solid;
+  border-radius: 50%;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.edu-node i {
+  font-size: 0.65rem;
+}
+
+/* Node Accents */
+.edu-sky {
+  color: #0ea5e9;
+  border-color: #0ea5e9;
+}
+
+.edu-fuchsia {
+  color: #d946ef;
+  border-color: #d946ef;
+}
+
+.edu-emerald {
+  color: #10b981;
+  border-color: #10b981;
+}
+
+.light-mode .edu-node {
+  background: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Skill Tiles (Dashboard Aesthetic) --- */
+.skill-tile {
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  border-radius: 1rem;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.light-mode .skill-tile {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.skill-tile:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.light-mode .skill-tile:hover {
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+.skill-icon-box {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 1rem;
+}
+
+/* Color Bubbles (Unified) */
+.skill-tile[data-color="emerald"] .skill-icon-box {
+  background: rgba(16, 185, 129, 0.1) !important;
+  color: #34d399 !important;
+  border-color: rgba(16, 185, 129, 0.2) !important;
+}
+
+.skill-tile[data-color="blue"] .skill-icon-box {
+  background: rgba(59, 130, 246, 0.1) !important;
+  color: #60a5fa !important;
+  border-color: rgba(59, 130, 246, 0.2) !important;
+}
+
+.skill-tile[data-color="orange"] .skill-icon-box {
+  background: rgba(249, 115, 22, 0.1) !important;
+  color: #fb923c !important;
+  border-color: rgba(249, 115, 22, 0.2) !important;
+}
+
+.skill-tile[data-color="sky"] .skill-icon-box {
+  background: rgba(14, 165, 233, 0.1) !important;
+  color: #38bdf8 !important;
+  border-color: rgba(14, 165, 233, 0.2) !important;
+}
+
+.skill-tile[data-color="yellow"] .skill-icon-box {
+  background: rgba(234, 179, 8, 0.1) !important;
+  color: #facc15 !important;
+  border-color: rgba(234, 179, 8, 0.2) !important;
+}
+
+.skill-tile[data-color="purple"] .skill-icon-box {
+  background: rgba(168, 85, 247, 0.1) !important;
+  color: #c084fc !important;
+  border-color: rgba(168, 85, 247, 0.2) !important;
+}
+
+.skill-tile[data-color="red"] .skill-icon-box {
+  background: rgba(239, 68, 68, 0.1) !important;
+  color: #f87171 !important;
+  border-color: rgba(239, 68, 68, 0.2) !important;
+}
+
+.skill-tile[data-color="rose"] .skill-icon-box {
+  background: rgba(244, 63, 94, 0.1) !important;
+  color: #fb7185 !important;
+  border-color: rgba(244, 63, 94, 0.2) !important;
+}
+
+.skill-tile[data-color="fuchsia"] .skill-icon-box {
+  background: rgba(217, 70, 239, 0.1) !important;
+  color: #e879f9 !important;
+  border-color: rgba(217, 70, 239, 0.2) !important;
+}
+
+.skill-tile[data-color="slate"] .skill-icon-box {
+  background: rgba(148, 163, 184, 0.1) !important;
+  color: #94a3b8 !important;
+  border-color: rgba(148, 163, 184, 0.2) !important;
+}
+
+.skill-tile[data-color="teal"] .skill-icon-box {
+  background: rgba(20, 184, 166, 0.1) !important;
+  color: #2dd4bf !important;
+  border-color: rgba(20, 184, 166, 0.2) !important;
+}
+
+.skill-tile[data-color="brand"] .skill-icon-box {
+  background: rgba(14, 165, 233, 0.1) !important;
+  color: #38bdf8 !important;
+  border-color: rgba(14, 165, 233, 0.2) !important;
+}
+
+/* Teal (OpenCV) */
+.skill-tile[data-color="teal"] .skill-icon-box {
+  background: rgba(20, 184, 166, 0.1) !important;
+  color: #2dd4bf !important;
+  border-color: rgba(20, 184, 166, 0.2) !important;
+}
+
+/* Slate (SQL) */
+.skill-tile[data-color="slate"] .skill-icon-box {
+  background: rgba(148, 163, 184, 0.1) !important;
+  color: #94a3b8 !important;
+  border-color: rgba(148, 163, 184, 0.2) !important;
+}
+
+/* Light Mode Overrides */
+.light-mode .skill-tile {
+  background: #ffffff !important;
+  border: 1px solid #f1f5f9 !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+}
+
+.light-mode .skill-title {
+  color: #1e293b !important;
+}
+
+.light-mode .skill-level {
+  color: #64748b !important;
+}
+
+.light-mode .skill-tile[data-color="rose"] .skill-icon-box {
+  background: #fff1f2 !important;
+  border-color: #ffe4e6 !important;
+  color: #e11d48 !important;
+}
+
+.light-mode .skill-tile[data-color="teal"] .skill-icon-box {
+  background: #f0fdfa !important;
+  border-color: #ccfbf1 !important;
+  color: #0d9488 !important;
+}
+
+.light-mode .skill-tile[data-color="slate"] .skill-icon-box {
+  background: #f8fafc !important;
+  border-color: #f1f5f9 !important;
+  color: #475569 !important;
+}
+
+/* Fix Grid Stability */
+#skills-grid-container {
+  align-items: stretch !important;
 }
