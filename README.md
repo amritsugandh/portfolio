@@ -11,7 +11,7 @@ A modern, high-performance portfolio website built with a focus on motion, aesth
 - **Glassmorphism UI**: Beautiful, translucent design language with vibrant gradients.
 - **Interactive Motion**: Smooth GSAP animations and micro-interactions.
 - **Responsive Design**: Optimized for all devices from mobile to ultra-wide displays.
-- **WhatsApp Integration**: Real-time communication directly from the contact form.
+- **Email Integration**: Professional contact system powered by EmailJS.
 
 ## 🛠️ Technical Stack
 - **Frontend**: HTML5, Vanilla JavaScript, Tailwind CSS.

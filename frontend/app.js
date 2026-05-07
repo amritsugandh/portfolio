@@ -216,52 +216,107 @@ document.addEventListener('DOMContentLoaded', () => {
     if (themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme);
     if (themeToggleMobileBtn) themeToggleMobileBtn.addEventListener('click', toggleTheme);
 
-    // --- Dual-Channel Contact Form ---
+    // --- Professional Contact Form (Web3Forms Integration) ---
     const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
+    const formStatus = document.getElementById('form-status');
+    const submitBtn = document.getElementById('submit-btn');
+
+    if (contactForm && submitBtn) {
         contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
 
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            // 1. Basic Validation
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value.trim();
+            const message = document.getElementById('message').value.trim();
 
-            // 1. Send to Formspree via Fetch
-            const formData = new FormData(contactForm);
+            if (!name || !email || !subject || !message) {
+                showStatus("Please fill in all fields.", "error");
+                return;
+            }
 
-            // Show loading state
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = "Sending...";
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showStatus("Please enter a valid email address.", "error");
+                return;
+            }
+
+            // 2. Set Loading State
+            const btnText = submitBtn.querySelector('.btn-text');
+            const btnIcon = submitBtn.querySelector('.ph-paper-plane-tilt');
+            const originalText = btnText.textContent;
+            
+            btnText.textContent = "Sending...";
+            btnIcon.className = "ph-bold ph-circle-notch animate-spin text-xl";
             submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-80', 'cursor-not-allowed');
 
-            fetch("https://formspree.io/f/iamritsugandh@gmail.com", {
-                method: "POST",
-                body: formData,
+            // 3. Prepare Form Data
+            const formData = new FormData(contactForm);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+
+            // 4. Send to Web3Forms
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
                 headers: {
+                    'Content-Type': 'application/json',
                     'Accept': 'application/json'
+                },
+                body: json
+            })
+            .then(async (response) => {
+                let json = await response.json();
+                if (response.status == 200) {
+                    showStatus("Message sent successfully! I'll get back to you soon.", "success");
+                    contactForm.reset();
+                } else {
+                    console.log(response);
+                    showStatus(json.message || "Something went wrong. Please try again.", "error");
                 }
-            }).then(response => {
-                if (response.ok) {
-                    console.log("Formspree success");
-                }
-            }).catch(error => {
-                console.error("Formspree error:", error);
-            }).finally(() => {
-                // 2. Open WhatsApp simultaneously
-                const whatsappMsg = `Hi Amrit, I'm ${name} (${email}). ${message}`;
-                const waUrl = `https://wa.me/919693829379?text=${encodeURIComponent(whatsappMsg)}`;
-                window.open(waUrl, '_blank');
-
-                // Reset form
-                submitBtn.textContent = "Message Sent!";
-                contactForm.reset();
+            })
+            .catch(error => {
+                console.log(error);
+                showStatus("Connection error. Please check your internet or try again.", "error");
+            })
+            .then(function() {
+                // Reset Button
                 setTimeout(() => {
-                    submitBtn.textContent = originalText;
+                    btnText.textContent = originalText;
+                    btnIcon.className = "ph-bold ph-paper-plane-tilt text-xl group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform";
                     submitBtn.disabled = false;
+                    submitBtn.classList.remove('opacity-80', 'cursor-not-allowed');
                 }, 3000);
             });
         });
+    }
+
+    function showStatus(msg, type) {
+        if (!formStatus) return;
+        
+        const statusIcon = formStatus.querySelector('.status-icon');
+        const statusText = formStatus.querySelector('.status-text');
+        
+        statusText.textContent = msg;
+        formStatus.classList.remove('hidden', 'bg-emerald-500/10', 'text-emerald-400', 'border-emerald-500/20', 'bg-red-500/10', 'text-red-400', 'border-red-500/20');
+        
+        if (type === 'success') {
+            formStatus.classList.add('bg-emerald-500/10', 'text-emerald-400', 'border', 'border-emerald-500/20');
+            statusIcon.className = "ph-bold ph-check-circle text-xl";
+        } else {
+            formStatus.classList.add('bg-red-500/10', 'text-red-400', 'border', 'border-red-500/20');
+            statusIcon.className = "ph-bold ph-warning-circle text-xl";
+        }
+        
+        formStatus.classList.remove('hidden');
+        gsap.fromTo(formStatus, { y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4 });
+        
+        if (type === 'success') {
+            setTimeout(() => {
+                gsap.to(formStatus, { opacity: 0, duration: 0.5, onComplete: () => formStatus.classList.add('hidden') });
+            }, 5000);
+        }
     }
 
     // --- Admin Portal Link revealing ---
@@ -363,5 +418,122 @@ document.addEventListener('DOMContentLoaded', () => {
             closeModal();
         }
     });
+
+    // --- Dynamic Blog Modal Logic ---
+    const blogModalOverlay = document.getElementById('blog-modal-overlay');
+    const closeBlogModalBtn = document.getElementById('close-blog-modal');
+    
+    window.openBlogModal = (index) => {
+        const blogs = window.currentSelectedBlogs;
+        if (!blogs || !blogs[index] || !blogModalOverlay) return;
+
+        const blog = blogs[index];
+        
+        // Populate modal
+        document.getElementById('blog-modal-category').textContent = blog.category;
+        document.getElementById('blog-modal-title').textContent = blog.title;
+        document.getElementById('blog-modal-date').textContent = blog.date;
+        document.getElementById('blog-modal-content').innerHTML = blog.content || `<p>${blog.excerpt}</p>`;
+        
+        // Update share links
+        const shareTitle = encodeURIComponent(blog.title);
+        const shareUrl = encodeURIComponent(window.location.href);
+        document.getElementById('blog-share-ln').href = `https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`;
+        document.getElementById('blog-share-tw').href = `https://twitter.com/intent/tweet?text=${shareTitle}&url=${shareUrl}`;
+
+        // Show modal
+        blogModalOverlay.classList.remove('hidden');
+        gsap.to(blogModalOverlay, {
+            opacity: 1,
+            duration: 0.5,
+            ease: "power2.out"
+        });
+        
+        // Animate modal content entry
+        gsap.fromTo(".blog-modal-curved", 
+            { y: 30, opacity: 0, scale: 0.95 },
+            { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.2)", delay: 0.1 }
+        );
+
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closeBlogModal = () => {
+        if (!blogModalOverlay) return;
+
+        gsap.to(blogModalOverlay, {
+            opacity: 0,
+            duration: 0.4,
+            ease: "power2.in",
+            onComplete: () => {
+                blogModalOverlay.classList.add('hidden');
+                document.body.style.overflow = '';
+            }
+        });
+    };
+
+    if (closeBlogModalBtn) closeBlogModalBtn.addEventListener('click', closeBlogModal);
+    if (blogModalOverlay) {
+        blogModalOverlay.addEventListener('click', (e) => {
+            if (e.target === blogModalOverlay) closeBlogModal();
+        });
+    }
+
+    // Add Escape key listener for blog modal too
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && blogModalOverlay && !blogModalOverlay.classList.contains('hidden')) {
+            closeBlogModal();
+        }
+    });
+    // --- Project Navigation (Horizontal Slider) ---
+    const projectGallery = document.getElementById('project-gallery');
+    const prevBtn = document.getElementById('prev-project');
+    const nextBtn = document.getElementById('next-project');
+
+    if (projectGallery && prevBtn && nextBtn) {
+        const getScrollAmount = () => {
+            const firstCard = projectGallery.querySelector('.minimal-card');
+            return firstCard ? firstCard.clientWidth + 32 : 400; // card width + gap
+        };
+
+        nextBtn.addEventListener('click', () => {
+            projectGallery.scrollBy({
+                left: getScrollAmount(),
+                behavior: 'smooth'
+            });
+        });
+
+        prevBtn.addEventListener('click', () => {
+            projectGallery.scrollBy({
+                left: -getScrollAmount(),
+                behavior: 'smooth'
+            });
+        });
+
+        // Toggle arrow visibility based on scroll position
+        const toggleArrows = () => {
+            const isAtStart = projectGallery.scrollLeft <= 20;
+            const isAtEnd = projectGallery.scrollLeft + projectGallery.clientWidth >= projectGallery.scrollWidth - 20;
+            const canScroll = projectGallery.scrollWidth > projectGallery.clientWidth;
+
+            if (window.innerWidth >= 768) { 
+                prevBtn.style.opacity = (canScroll && !isAtStart) ? '1' : '0.15';
+                prevBtn.style.pointerEvents = (canScroll && !isAtStart) ? 'auto' : 'none';
+                
+                nextBtn.style.opacity = (canScroll && !isAtEnd) ? '1' : '0.15';
+                nextBtn.style.pointerEvents = (canScroll && !isAtEnd) ? 'auto' : 'none';
+            } else {
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+            }
+        };
+
+        projectGallery.addEventListener('scroll', toggleArrows);
+        window.addEventListener('resize', toggleArrows);
+        
+        document.addEventListener('portfolioRendered', () => {
+            setTimeout(toggleArrows, 800); // Wait for cards to render
+        });
+    }
 
 });

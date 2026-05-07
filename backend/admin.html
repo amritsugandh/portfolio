@@ -14,7 +14,7 @@
     
     <!-- Admin Specific CSS -->
     <link rel="stylesheet" href="admin-style.css">
-    <link rel="icon" type="image/png" href="src/assets/image.png">
+    <link rel="icon" type="image/png" href="../frontend/src/assets/image.png">
     <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -66,7 +66,7 @@
                 <button class="tab-btn active px-4 py-2 text-sm font-bold uppercase tracking-tighter" data-tab="about">About</button>
                 <button class="tab-btn px-4 py-2 text-sm font-bold uppercase tracking-tighter" data-tab="projects">Projects</button>
                 <button class="tab-btn px-4 py-2 text-sm font-bold uppercase tracking-tighter" data-tab="skills">Skills</button>
-                <a href="index.html" class="px-4 py-2 text-sm font-bold uppercase tracking-tighter text-slate-400 hover:text-brand-light transition-colors flex items-center gap-2"><i class="ph ph-arrow-left"></i> Portfolio</a>
+                <a href="../frontend/index.html" class="px-4 py-2 text-sm font-bold uppercase tracking-tighter text-slate-400 hover:text-brand-light transition-colors flex items-center gap-2"><i class="ph ph-arrow-left"></i> Portfolio</a>
             </nav>
 
             <button id="logout-btn" class="p-2 text-slate-400 hover:text-white transition-colors">
@@ -301,9 +301,12 @@
         
         // Helper to fix image paths coming from old database entries
         const fixImagePath = (path) => {
-            if (!path || path.startsWith('http') || path.includes('src/assets/')) return path;
-            const cleanPath = path.startsWith('./') ? path.substring(2) : path;
-            return `src/assets/${cleanPath}`;
+            if (!path || path.startsWith('http')) return path;
+            // If it already has the backend-to-frontend relative path, return it
+            if (path.startsWith('../frontend/')) return path;
+            // Otherwise, strip any existing prefixes and add the correct one
+            const cleanPath = path.replace('src/assets/', '').replace('./', '');
+            return `../frontend/src/assets/${cleanPath}`;
         };
 
         // Authentication Listener

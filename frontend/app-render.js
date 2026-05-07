@@ -23,7 +23,20 @@ const renderPortfolio = async () => {
 
             const projectsSnap = await db.collection('projects').get();
             if (!projectsSnap.empty) {
-                data.projects = projectsSnap.docs.map(doc => doc.data());
+                const dbProjects = projectsSnap.docs.map(doc => doc.data());
+                const localProjects = data.projects || [];
+                const mergedProjects = [...localProjects];
+                
+                dbProjects.forEach(dbProject => {
+                    if (!mergedProjects.some(p => p.id === dbProject.id)) {
+                        mergedProjects.push(dbProject);
+                    } else {
+                        // Update local project with DB data if it matches ID
+                        const idx = mergedProjects.findIndex(p => p.id === dbProject.id);
+                        mergedProjects[idx] = dbProject;
+                    }
+                });
+                data.projects = mergedProjects;
             }
 
             const skillsDoc = await db.collection('skills').doc('list').get();
@@ -40,6 +53,11 @@ const renderPortfolio = async () => {
                 });
                 data.skills = mergedSkills;
             }
+
+            const blogsSnap = await db.collection('blogs').get();
+            if (!blogsSnap.empty) {
+                data.blogs = blogsSnap.docs.map(doc => doc.data());
+            }
         } catch (err) {
             console.warn("Firebase fetch failed, using local fallback.", err);
         }
@@ -47,7 +65,7 @@ const renderPortfolio = async () => {
 
     if (!data) return;
 
-    const { profile, projects, skills } = data;
+    const { profile, projects, skills, blogs } = data;
 
     // 1. Render Profile (Hero & About)
     const heroTagline = document.getElementById('hero-tagline');
@@ -85,35 +103,22 @@ const renderPortfolio = async () => {
     const projectGallery = document.getElementById('project-gallery');
     if (projectGallery) {
         projectGallery.innerHTML = projects.map((project, index) => `
-            <div
-                class="group flex flex-col bg-white/5 border border-white/10 rounded-3xl overflow-hidden hover:border-brand-light/40 transition-all duration-500 fade-up-element h-full"
-                style="transition-delay: ${index * 100}ms;">
-                <div class="h-48 overflow-hidden relative">
-                    <img src="${fixImagePath(project.image)}" alt="${project.title}"
-                        class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700">
-                    <div class="absolute inset-0 bg-dark/20 group-hover:bg-transparent transition-colors"></div>
+            <div class="minimal-card fade-up-element w-full md:w-[480px]" style="transition-delay: ${index * 100}ms;">
+                <div class="minimal-card-image">
+                    <img src="${fixImagePath(project.image)}" alt="${project.title}">
                 </div>
-
-                <div class="p-6 flex flex-col flex-1">
-                    <div class="flex gap-2 mb-4">
-                        ${project.tags.map(tag => `
-                            <span class="text-[10px] font-bold px-2 py-0.5 bg-brand-light/10 text-brand-light rounded-full uppercase tracking-tighter border border-brand-light/20">${tag}</span>
-                        `).join('')}
-                    </div>
-                    <h4 class="text-xl font-bold text-white mb-2 group-hover:text-brand-light transition-colors">${project.title}</h4>
-                    <p class="text-xs text-slate-400 mb-6 line-clamp-3 leading-relaxed flex-1">
-                        ${project.description}
+                <div class="minimal-card-body">
+                    <h4 class="minimal-card-title">${project.title}</h4>
+                    <p class="minimal-card-description">
+                        ${project.description.split('. ')[0]}.
                     </p>
-                    <div class="flex items-center gap-4 mt-auto pt-4 border-t border-white/5">
+                    <div class="minimal-card-footer">
                         ${project.liveUrl ? `
-                            <a href="${project.liveUrl}" target="_blank"
-                                class="text-[11px] font-bold text-white hover:text-brand-light flex items-center gap-1.5 transition-colors">
-                                LIVE <i class="ph ph-rocket-launch"></i>
-                            </a>
-                        ` : ''}
-                        <a href="${project.githubUrl}" target="_blank"
-                            class="text-[11px] font-bold text-slate-500 hover:text-white flex items-center gap-1.5 transition-colors">
-                            CODE <i class="ph ph-github-logo"></i>
+                        <a href="${project.liveUrl}" target="_blank" class="minimal-link">
+                            <i class="ph ph-rocket-launch"></i> Live Demo
+                        </a>` : ''}
+                        <a href="${project.githubUrl}" target="_blank" class="minimal-link">
+                            <i class="ph ph-github-logo"></i> Source Code
                         </a>
                     </div>
                 </div>
@@ -165,6 +170,65 @@ const renderPortfolio = async () => {
                         <p class="skill-level text-[10px] font-medium mt-0.5">${skill.level}</p>
                     </div>
                 </div>
+            `;
+        }).join('');
+    }
+
+    // 4. Render Dynamic Randomized Blogs
+    const blogGrid = document.querySelector('#blog .grid');
+    if (blogGrid && blogs && blogs.length > 0) {
+        // Shuffle and pick 3
+        const shuffledBlogs = [...blogs].sort(() => 0.5 - Math.random());
+        const selectedBlogs = shuffledBlogs.slice(0, 3);
+        window.currentSelectedBlogs = selectedBlogs;
+
+        blogGrid.innerHTML = selectedBlogs.map((blog, index) => {
+            let colorClass = "brand-light";
+            let iconClass = "ph-brain";
+            let borderHover = "hover:border-brand-light/30";
+            
+            const cat = blog.category.toLowerCase();
+            if (cat.includes('design')) {
+                colorClass = "fuchsia-400";
+                iconClass = "ph-palette";
+                borderHover = "hover:border-fuchsia-500/30";
+            } else if (cat.includes('devops') || cat.includes('backend')) {
+                colorClass = "emerald-400";
+                iconClass = "ph-stack";
+                borderHover = "hover:border-emerald-400/30";
+            } else if (cat.includes('performance')) {
+                colorClass = "sky-400";
+                iconClass = "ph-gauge";
+                borderHover = "hover:border-sky-400/30";
+            }
+
+            return `
+                <article
+                    class="group bg-white/5 border border-white/10 rounded-3xl overflow-hidden ${borderHover} transition-all duration-500 fade-up-element"
+                    style="transition-delay: ${index * 100}ms;">
+                    <div class="aspect-video relative overflow-hidden">
+                        <div class="absolute inset-0 bg-white/5 blur-2xl group-hover:scale-150 transition-transform duration-700 opacity-0 group-hover:opacity-30"></div>
+                        <div class="absolute inset-0 flex items-center justify-center bg-darker/60 group-hover:bg-darker/40 transition-colors">
+                            <i class="ph ${iconClass} text-5xl text-${colorClass} group-hover:scale-110 transition-transform"></i>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center gap-3 mb-4 text-xs font-semibold text-slate-500 uppercase tracking-widest">
+                            <span>${blog.date}</span>
+                            <span class="w-1 h-1 rounded-full bg-slate-700"></span>
+                            <span>${blog.category}</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-4 group-hover:text-brand-light transition-colors">
+                            ${blog.title}
+                        </h4>
+                        <p class="text-sm text-slate-400 mb-6 line-clamp-3 leading-relaxed">
+                            ${blog.excerpt}
+                        </p>
+                        <button onclick="openBlogModal(${index})" class="inline-flex items-center gap-2 text-sm font-bold text-white group-hover:gap-3 transition-all">
+                            Read More <i class="ph ph-arrow-up-right"></i>
+                        </button>
+                    </div>
+                </article>
             `;
         }).join('');
     }
