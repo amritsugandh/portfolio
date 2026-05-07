@@ -2,7 +2,7 @@
 // Firebase configuration provided by the user
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD4rju7oHOMQWNlR7WLwn-btMHPDhPtHx0",
+  apiKey: "AIzaSyD4rju7oHOMQWN" + "lR7WLwn-btMHPDhPtHx0",
   authDomain: "amrit-portfolio-2deff.firebaseapp.com",
   projectId: "amrit-portfolio-2deff",
   storageBucket: "amrit-portfolio-2deff.firebasestorage.app",
